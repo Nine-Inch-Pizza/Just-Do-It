@@ -30,9 +30,9 @@
             <input type="text" name="task_Content" size="30" value=""/>
             </p>
             
-            <p>Task Image:
+            <!-- <p>Task Image:
             <input type="text" name="task_Image" size="30" value=""/>
-            </p>
+            </p> -->
             
             <p>
                 <input type="submit" name="submit" value="Send" />
