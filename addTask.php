@@ -15,7 +15,20 @@
             </p>
             
             <p>Task Category:
-            <input type="number" name="task_category" size="30" value=""/>
+            <select name="task_category">
+            <?php
+                require_once('mysqli_connect.php');
+
+                $query = "SELECT * FROM categories";
+                $response = @mysqli_query($dbc, $query);
+
+                while($row = mysqli_fetch_array($response)){
+                    echo    "<option value = " . $row['category_id'] . ">" .
+                            $row['category_name'] . "</option>";
+                }
+
+            ?>
+            </select>
             </p>
             
             <p>Task Date:
