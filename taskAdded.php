@@ -34,13 +34,13 @@
             }
             
             if(empty($_POST['task_Content'])){
-                $data_missing[] = "Task Content";
+                // $data_missing[] = "Task Content";
             } else{
                 $t_content = trim($_POST['task_Content']);
             }
             
             if(empty($_POST['task_Image'])){
-                $data_missing[] = "Task Image";
+                // $data_missing[] = "Task Image";
             } else{
                 $t_image = trim($_POST['task_Image']);
             }        
@@ -52,7 +52,7 @@
                 
                 require_once('mysqli_connect.php');
                 
-                $query = "INSERT INTO tasks(task_id, account_id, category_id, task_name, task_date, task_status, task_content, task_img_src) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+                $query = "INSERT INTO tasks(account_id, category_id, task_name, task_date, task_status, task_content, task_img_src) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 
                 $stmt = mysqli_prepare($dbc, $query);
                 
@@ -102,7 +102,7 @@
         
         ?>
         
-        <form action="http://localhost/prosdev/taskAdded.php" method="post">
+        <form action="taskAdded.php" method="post">
         
             <b>Add a new Task</b>
             
@@ -111,7 +111,20 @@
             </p>
             
             <p>Task Category:
-            <input type="number" name="task_category" size="30" value=""/>
+            <select name="task_category">
+            <?php
+                require_once('mysqli_connect.php');
+
+                $query = "SELECT * FROM categories";
+                $response = @mysqli_query($dbc, $query);
+
+                while($row = mysqli_fetch_array($response)){
+                    echo    "<option value = " . $row['category_id'] . ">" .
+                            $row['category_name'] . "</option>";
+                }
+
+            ?>
+            </select>
             </p>
             
             <p>Task Date:
@@ -126,12 +139,12 @@
             <input type="text" name="task_Content" size="30" value=""/>
             </p>
             
-            <p>Task Image:
-            <input type="image" name="task_Image" size="30" value=""/>
-            </p>
+            <!-- <p>Task Image:
+            <input type="text" name="task_Image" size="30" value=""/>
+            </p> -->
             
             <p>
-                <input type="text" name="submit" value="Send" />
+                <input type="submit" name="submit" value="Send" />
             </p>
         
             

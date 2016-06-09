@@ -6,7 +6,7 @@
     </head>
     <body>
     
-        <form action="http://localhost/prosdev/taskAdded.php" method="post">
+        <form action="taskAdded.php" method="post" id = "addTaskForm">
         
             <b>Add a new Task</b>
             
@@ -15,7 +15,7 @@
             </p>
             
             <p>Task Category:
-            <select name="task_category">
+            <select name="task_category" form = "addTaskForm">
             <?php
                 require_once('mysqli_connect.php');
 
@@ -43,9 +43,9 @@
             <input type="text" name="task_Content" size="30" value=""/>
             </p>
             
-            <!-- <p>Task Image:
+            <p>Task Image:
             <input type="text" name="task_Image" size="30" value=""/>
-            </p> -->
+            </p>
             
             <p>
                 <input type="submit" name="submit" value="Send" />
