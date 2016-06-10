@@ -48,7 +48,7 @@
             $t_account = 1;
             
             if(empty($data_missing)){
-                
+               
                 require 'addTaskFunction.php';
                 addTask($t_account, $t_category, $t_name, $t_date, $t_status, $t_content, $t_image);    
                 
@@ -66,7 +66,7 @@
         
         ?>
         
-        <form action="http://localhost/prosdev/taskAdded.php" method="post">
+        <form action="taskAdded.php" method="post">
         
             <b>Add a new Task</b>
             
@@ -75,7 +75,20 @@
             </p>
             
             <p>Task Category:
-            <input type="number" name="task_category" size="30" value=""/>
+            <select name="task_category">
+            <?php
+                require_once('mysqli_connect.php');
+
+                $query = "SELECT * FROM categories";
+                $response = @mysqli_query($dbc, $query);
+
+                while($row = mysqli_fetch_array($response)){
+                    echo    "<option value = " . $row['category_id'] . ">" .
+                            $row['category_name'] . "</option>";
+                }
+
+            ?>
+            </select>
             </p>
             
             <p>Task Date:
@@ -90,12 +103,12 @@
             <input type="text" name="task_Content" size="30" value=""/>
             </p>
             
-            <p>Task Image:
-            <input type="image" name="task_Image" size="30" value=""/>
-            </p>
+            <!-- <p>Task Image:
+            <input type="text" name="task_Image" size="30" value=""/>
+            </p> -->
             
             <p>
-                <input type="text" name="submit" value="Send" />
+                <input type="submit" name="submit" value="Send" />
             </p>
         
             
