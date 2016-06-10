@@ -21,9 +21,7 @@
             } else{
                 $password = trim($_POST['password']);
             }
-            
-
-            
+               
             if(empty($data_missing)){
                 
                require_once('addUserFunction.php');

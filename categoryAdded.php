@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Add Category</title>
+        <title>Add Category</title> 
         <script src="http://www.w3schools.com/lib/w3data.js"></script>
     </head>
     <body>
