@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Add Task</title>
+        <script src="http://www.w3schools.com/lib/w3data.js"></script>
     </head>
     <body>
         <?php
@@ -48,43 +49,9 @@
             $t_account = 1;
             
             if(empty($data_missing)){
-                
-                
-                require_once('mysqli_connect.php');
-                
-                $query = "INSERT INTO tasks(account_id, category_id, task_name, task_date, task_status, task_content, task_img_src) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                
-                $stmt = mysqli_prepare($dbc, $query);
-                
-                //i Integers
-                //d Doubles
-                //b Blobs
-                //s Everything Else
-                
-                mysqli_stmt_bind_param($stmt, "iississ", $t_account, $t_category, $t_name, $t_date, $t_status, $t_content, $t_image);
-                
-                mysqli_stmt_execute($stmt);
-                
-                $affected_rows = mysqli_stmt_affected_rows($stmt);
-                
-                if($affected_rows == 1){
-                    
-                    echo 'Task Entered';
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                    
-                } else {
-                    
-                    echo 'Error Occured<br />';
-                    echo mysqli_error($dbc);
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                        
-                }
+               
+                require 'addTaskFunction.php';
+                addTask($t_account, $t_category, $t_name, $t_date, $t_status, $t_content, $t_image);    
                 
             } else {
                 
@@ -94,60 +61,16 @@
                     
                     echo "$missing<br />";
                     
-                }
-                
+                }   
             }
-            
         }
         
         ?>
-        
-        <form action="taskAdded.php" method="post">
-        
-            <b>Add a new Task</b>
-            
-            <p>Task Name:
-            <input type="text" name="task_name" size="30" value=""/>
-            </p>
-            
-            <p>Task Category:
-            <select name="task_category">
-            <?php
-                require_once('mysqli_connect.php');
 
-                $query = "SELECT * FROM categories";
-                $response = @mysqli_query($dbc, $query);
-
-                while($row = mysqli_fetch_array($response)){
-                    echo    "<option value = " . $row['category_id'] . ">" .
-                            $row['category_name'] . "</option>";
-                }
-
-            ?>
-            </select>
-            </p>
-            
-            <p>Task Date:
-            <input type="date" name="task_date" size="30" value=""/>
-            </p>
-            
-            <p>Task Status:
-            <input type="number" name="task_Status" size="30" value=""/>
-            </p>
-            
-            <p>Task Content:
-            <input type="text" name="task_Content" size="30" value=""/>
-            </p>
-            
-            <!-- <p>Task Image:
-            <input type="text" name="task_Image" size="30" value=""/>
-            </p> -->
-            
-            <p>
-                <input type="submit" name="submit" value="Send" />
-            </p>
+        <div w3-include-html = "addTask.php"></div>
         
-            
-        </form>
+        <script>
+            w3IncludeHTML();
+        </script>
     </body>
 </html>

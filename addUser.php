@@ -1,12 +1,7 @@
 <html>
-    <head>
-        <title>
-            Add User
-        </title>
-    </head>
     <body>
     
-        <form action="http://localhost/prosdev/userAdded.php" method="post">
+        <form action="userAdded.php" method="post">
         
             <b>Add a new User</b>
             

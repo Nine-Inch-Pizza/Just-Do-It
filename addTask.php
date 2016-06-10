@@ -1,9 +1,4 @@
 <html>
-    <head>
-        <title>
-            Add Task
-        </title>
-    </head>
     <body>
     
         <form action="taskAdded.php" method="post" id = "addTaskForm">
@@ -18,8 +13,9 @@
             <select name="task_category" form = "addTaskForm">
             <?php
                 require_once('mysqli_connect.php');
+                require_once('sqlNames.php');
 
-                $query = "SELECT * FROM categories";
+                $query = "SELECT * FROM $CATEGORY_TABLE WHERE $ACCOUNT_ID = 0 OR $ACCOUNT_ID = $t_account";
                 $response = @mysqli_query($dbc, $query);
 
                 while($row = mysqli_fetch_array($response)){
@@ -51,8 +47,6 @@
                 <input type="submit" name="submit" value="Send" />
             </p>
         
-            
         </form>
-    
     </body>
 </html>
