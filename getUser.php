@@ -1,6 +1,7 @@
 <?php
 
 require_once('mysqli_connect.php');
+require_once('sqlNames.php');
 
 $query = "SELECT * FROM $ACCOUNT_TABLE";
     
