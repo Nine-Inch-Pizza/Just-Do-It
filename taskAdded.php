@@ -34,13 +34,13 @@
             }
             
             if(empty($_POST['task_Content'])){
-                $data_missing[] = "Task Content";
+                // $data_missing[] = "Task Content";
             } else{
                 $t_content = trim($_POST['task_Content']);
             }
             
             if(empty($_POST['task_Image'])){
-                $data_missing[] = "Task Image";
+                // $data_missing[] = "Task Image";
             } else{
                 $t_image = trim($_POST['task_Image']);
             }        
@@ -49,42 +49,8 @@
             
             if(empty($data_missing)){
                 
-                
-                require_once('mysqli_connect.php');
-                
-                $query = "INSERT INTO tasks(task_id, account_id, category_id, task_name, task_date, task_status, task_content, task_img_src) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
-                
-                $stmt = mysqli_prepare($dbc, $query);
-                
-                //i Integers
-                //d Doubles
-                //b Blobs
-                //s Everything Else
-                
-                mysqli_stmt_bind_param($stmt, "iississ", $t_account, $t_category, $t_name, $t_date, $t_status, $t_content, $t_image);
-                
-                mysqli_stmt_execute($stmt);
-                
-                $affected_rows = mysqli_stmt_affected_rows($stmt);
-                
-                if($affected_rows == 1){
-                    
-                    echo 'Task Entered';
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                    
-                } else {
-                    
-                    echo 'Error Occured<br />';
-                    echo mysqli_error($dbc);
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                        
-                }
+                require 'addTaskFunction.php';
+                addTask($t_account, $t_category, $t_name, $t_date, $t_status, $t_content, $t_image);    
                 
             } else {
                 
