@@ -1,7 +1,6 @@
 <?php
 	$TASK_TABLE			= "tasks";
 	$CATEGORY_TABLE 	= "categories";
-	$USR_DFN_CAT_TABLE	= "usr_dfn_cat";
 	$ACCOUNT_TABLE		= "user_account";
 
 	$CATEGORY_ID 		= "category_id";

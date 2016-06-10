@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Add Category</title>
+        <script src="http://www.w3schools.com/lib/w3data.js"></script>
     </head>
     <body>
         <?php
@@ -17,44 +18,9 @@
             
             if(empty($data_missing)){
                 
-                
-                require_once('mysqli_connect.php');
-                
-                $query = "INSERT INTO categories(category_id, category_name) VALUES (NULL, ?)";
-                
-                $stmt = mysqli_prepare($dbc, $query);
-                
-                //i Integers
-                //d Doubles
-                //b Blobs
-                //s Everything Else
-                
-                mysqli_stmt_bind_param($stmt, "s", $category_name);
-                
-                
-                mysqli_stmt_execute($stmt);
-                
-                $affected_rows = mysqli_stmt_affected_rows($stmt);
-                
-                if($affected_rows == 1){
-                    
-                    echo 'Category Entered';
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                    
-                } else {
-                    
-                    echo 'Error Occured<br />';
-                    echo mysqli_error($dbc);
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                        
-                }
-                
+                require "addCategoryFunction.php";
+                addCategory($category_name, 1);
+
             } else {
                 
                 echo 'You need to enter the following data<br />';
@@ -71,19 +37,9 @@
         
         ?>
         
-        <form action="categoryAdded.php" method="post">
-        
-            <b>Add a new Task Category</b>
-            
-            <p>Category:
-            <input type="text" name="category_name" size="30" value=""/>
-            </p>
-            
-            <p>
-                <input type="submit" name="submit" value="Send" />
-            </p>
-        
-            
-        </form>
+       <div w3-include-html = "addCategory.php"></div>
+        <script>
+            w3IncludeHTML();
+        </script>
     </body>
 </html>
