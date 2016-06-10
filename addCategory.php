@@ -6,7 +6,7 @@
     </head>
     <body>
     
-        <form action="http://localhost/prosdev/categoryAdded.php" method="post">
+        <form action="categoryAdded.php" method="post">
         
             <b>Add a new Task Category</b>
             
