@@ -1,8 +1,9 @@
 <?php
 
 require_once('mysqli_connect.php');
+require_once('sqlNames.php');
 
-$query = "SELECT category_id, category_name FROM categories";
+$query = "SELECT * FROM $CATEGORY_TABLE";
     
 $response = @mysqli_query($dbc, $query);
 
@@ -19,8 +20,8 @@ if($response){
     while($row = mysqli_fetch_array($response)){
         
         echo '<tr><td align=left>'  .
-            $row['category_id']     .   '</td><td align="left">'    .
-            $row['category_name']   .   '</td><td align="left">'    ;
+            $row[$CATEGORY_ID]     .   '</td><td align="left">'    .
+            $row[$CATEGORY_NAME]   .   '</td><td align="left">'    ;
         
         echo '</tr>';
     }
