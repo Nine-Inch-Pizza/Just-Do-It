@@ -32,7 +32,8 @@ if($response){
             $row['task_date']                           .   '</td><td align="left">'    .
             $row['task_status']                         .   '</td><td align="left">'    .
             $row['task_content']                        .   '</td><td align="left">'    .
-            $row['task_img_src']                        .   '</td><td align="left">'    ;
+            $row['task_img_src']                        .   '</td><td align="left">'    .
+            '<button type="button">Click Me!</button>'  .   '</td><td align="left">'    ;
         
         echo '</tr>
         
