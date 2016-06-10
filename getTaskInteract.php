@@ -12,6 +12,7 @@ if($response){
     cellspacing="5" cellpadding="8">
     
     <tr>
+    <td align="left"> <b>Task Completion<b>             </td>
     <td align="left"> <b>Task ID<b>             </td>
     <td align="left"> <b>Account ID</b>         </td>
     <td align="left"> <b>Category ID</b>        </td>
@@ -25,6 +26,7 @@ if($response){
     while($row = mysqli_fetch_array($response)){
         
         echo '<tr><td align=left>'                      .
+            '<button type="button">Click Me!</button>'  .   '</td><td align="left">'    .
             $row['task_id']                             .   '</td><td align="left">'    .
             $row['account_id']                          .   '</td><td align="left">'    .
             $row['category_id']                         .   '</td><td align="left">'    .
@@ -32,8 +34,8 @@ if($response){
             $row['task_date']                           .   '</td><td align="left">'    .
             $row['task_status']                         .   '</td><td align="left">'    .
             $row['task_content']                        .   '</td><td align="left">'    .
-            $row['task_img_src']                        .   '</td><td align="left">'    .
-            '<button type="button">Click Me!</button>'  .   '</td><td align="left">'    ;
+            $row['task_img_src']                        .   '</td><td align="left">'    ;
+            
         
         echo '</tr>
         

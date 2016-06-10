@@ -1,7 +1,7 @@
 <?php
 
-DEFINE ('DB_USER', 'root');
-DEFINE ('DB_PASSWORD', '1234');
+DEFINE ('DB_USER', 'adminweb');
+DEFINE ('DB_PASSWORD', 'adminweb1');
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_NAME', 'just_do_it');
 
