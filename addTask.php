@@ -1,7 +1,7 @@
 <html>
     <body>
-    
-        <form action="taskAdded.php" method="post" id = "addTaskForm">
+        
+        <form action="taskAdded.php" method="post" id = "addTaskForm" enctype ="multipart/form-data">
         
             <b>Add a new Task</b>
             
@@ -14,6 +14,7 @@
             <?php
                 require_once('mysqli_connect.php');
                 require_once('sqlNames.php');
+                $t_account = 1;
 
                 $query = "SELECT * FROM $CATEGORY_TABLE WHERE $ACCOUNT_ID = 0 OR $ACCOUNT_ID = $t_account";
                 $response = @mysqli_query($dbc, $query);
@@ -40,7 +41,7 @@
             </p>
             
             <p>Task Image:
-            <input type="text" name="task_Image" size="30" value=""/>
+            <input type="file" name="task_Image" size="30" value="" id = "uploadImg"/>
             </p>
             
             <p>

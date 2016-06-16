@@ -3,7 +3,7 @@
 		require_once('mysqli_connect.php');
         require_once('sqlNames.php');
 
-        $query = "INSERT INTO $TASK_TABLE($ACCOUNT_ID, $CATEGORY_ID, $TASK_NAME, $TASK_DATE, $TASK_STATUS, $TASK_STATUS, $TASK_IMG_SRC) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO $TASK_TABLE($ACCOUNT_ID, $CATEGORY_ID, $TASK_NAME, $TASK_DATE, $TASK_STATUS, $TASK_CONTENT, $TASK_IMG_SRC) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 
         $stmt = mysqli_prepare($dbc, $query);
                 

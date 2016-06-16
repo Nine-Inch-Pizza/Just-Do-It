@@ -43,7 +43,9 @@
             if(empty($_POST['task_Image'])){
                 // $data_missing[] = "Task Image";
             } else{
-                $t_image = trim($_POST['task_Image']);
+
+                require_once('upload.php');
+                $t_image = $target_path;
             }        
             
             $t_account = 1;
