@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <?php
 
 require_once('mysqli_connect.php');

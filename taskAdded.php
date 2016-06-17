@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <html>
     <head>
         <title>Add Task</title>
@@ -66,6 +70,7 @@
         }
         
         ?>
+
 
         <div w3-include-html = "addTask.php"></div>
         

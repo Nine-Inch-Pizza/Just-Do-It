@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <html>
     <body>
     
@@ -12,10 +16,15 @@
             <p>Task Category:
             <select name="task_category" form = "addTaskForm">
             <?php
+
+                $t_account = $_SESSION["account_id"];
+
+                echo $t_account;
+
                 require_once('mysqli_connect.php');
                 require_once('sqlNames.php');
 
-                $query = "SELECT * FROM $CATEGORY_TABLE WHERE $ACCOUNT_ID = 0 OR $ACCOUNT_ID = $t_account";
+                $query = "SELECT * FROM $CATEGORY_TABLE WHERE $ACCOUNT_ID = 0";
                 $response = @mysqli_query($dbc, $query);
 
                 while($row = mysqli_fetch_array($response)){
@@ -32,7 +41,10 @@
             </p>
             
             <p>Task Status:
-            <input type="number" name="task_Status" size="30" value=""/>
+            <select name="task_Status" form = "addTaskForm">
+                <option value = "Doing"> Doing </option>
+                <option value = "Complete"> Complete </option>
+            </select>
             </p>
             
             <p>Task Content:

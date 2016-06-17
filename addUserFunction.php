@@ -1,5 +1,6 @@
 <?php
 	function addUser($username, $password) {
+
 		require_once('sqlNames.php');
         require_once('mysqli_connect.php');
         
@@ -14,7 +15,6 @@
         
         mysqli_stmt_bind_param($stmt, "ss", $username, $password);
         
-        
         mysqli_stmt_execute($stmt);
         
         $affected_rows = mysqli_stmt_affected_rows($stmt);
@@ -26,6 +26,11 @@
             mysqli_stmt_close($stmt);
             
             mysqli_close($dbc);
+
+            $_SESSION["account_id"] = mysqli_insert_id();
+            // echo $_SESSION["account_id"];
+            header("Location: addTask.php");
+            exit();
             
         } else {
             
