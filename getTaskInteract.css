@@ -1,0 +1,17 @@
+body{
+    background-image: url(Clouds%20over%20Bataan%204%20Cropped.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+div{
+    width: 50dp;
+    max-width: 50dp;
+}
+
+p{
+    height: 50dp;
+    width: 50dp;
+    background: #bbbbbb;
+}
