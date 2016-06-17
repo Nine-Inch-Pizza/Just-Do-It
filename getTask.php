@@ -28,7 +28,6 @@ if($response){
     </tr>';
     
     while($row = mysqli_fetch_array($response)){
-        
         echo '<tr><td align=left>'  .
             $row[$TASK_ID]         .   '</td><td align="left">'    .
             $row[$ACCOUNT_ID]      .   '</td><td align="left">'    .
@@ -39,7 +38,9 @@ if($response){
             $row[$TASK_CONTENT]    .   '</td><td align="left">'    .
             $row[$TASK_IMG_SRC]    .   '</td><td align="left">'    ;
         
-        echo '</tr>';
+        echo '</tr>
+        
+        ';
     }
     
     echo '</table>';
