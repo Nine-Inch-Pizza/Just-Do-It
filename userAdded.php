@@ -1,6 +1,11 @@
+<?php 
+    session_start();
+?>
+
 <html>
     <head>
         <title>Add User</title>
+        <script src="http://www.w3schools.com/lib/w3data.js"></script>
     </head>
     <body>
         <?php
@@ -20,48 +25,11 @@
             } else{
                 $password = trim($_POST['password']);
             }
-            
-
-            
+               
             if(empty($data_missing)){
                 
-                
-                require_once('mysqli_connect.php');
-                
-                $query = "INSERT INTO user_account(account_id, username, password) VALUES (NULL, ?, ?)";
-                
-                $stmt = mysqli_prepare($dbc, $query);
-                
-                //i Integers
-                //d Doubles
-                //b Blobs
-                //s Everything Else
-                
-                mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-                
-                
-                mysqli_stmt_execute($stmt);
-                
-                $affected_rows = mysqli_stmt_affected_rows($stmt);
-                
-                if($affected_rows == 1){
-                    
-                    echo 'User Entered';
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                    
-                } else {
-                    
-                    echo 'Error Occured<br />';
-                    echo mysqli_error($dbc);
-                    
-                    mysqli_stmt_close($stmt);
-                    
-                    mysqli_close($dbc);
-                        
-                }
+               require_once('addUserFunction.php');
+               addUser($username, $password);
                 
             } else {
                 
@@ -79,23 +47,9 @@
         
         ?>
         
-        <form action="http://localhost/prosdev/userAdded.php" method="post">
-        
-            <b>Add a new User</b>
-            
-            <p>Username:
-            <input type="text" name="username" size="30" value=""/>
-            </p>
-            
-            <p>Password
-            <input type=password name="password" size="30" value=""/>
-            </p>
-            
-            <p>
-                <input type="submit" name="submit" value="Send" />
-            </p>
-        
-            
-        </form>
+        <div w3-include-html = "addUser.php"></div>
+        <script>
+            w3IncludeHTML();
+        </script>
     </body>
 </html>

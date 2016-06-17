@@ -1,8 +1,9 @@
 <?php
 
 require_once('mysqli_connect.php');
+require_once('sqlNames.php');
 
-$query = "SELECT account_id, username FROM user_account";
+$query = "SELECT * FROM $ACCOUNT_TABLE";
     
 $response = @mysqli_query($dbc, $query);
 
@@ -19,8 +20,8 @@ if($response){
     while($row = mysqli_fetch_array($response)){
         
         echo '<tr><td align=left>'  .
-            $row['account_id']      .   '</td><td align="left">'    .
-            $row['username']        .   '</td><td align="left">'    ;
+            $row[$ACCOUNT_ID]      .   '</td><td align="left">'    .
+            $row[$USERNAME]        .   '</td><td align="left">'    ;
         
         echo '</tr>';
     }

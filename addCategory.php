@@ -1,9 +1,4 @@
 <html>
-    <head>
-        <title>
-            Add Task Category
-        </title>
-    </head>
     <body>
     
         <form action="categoryAdded.php" method="post">

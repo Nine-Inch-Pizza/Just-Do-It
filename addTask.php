@@ -1,9 +1,8 @@
+<?php 
+    session_start();
+?>
+
 <html>
-    <head>
-        <title>
-            Add Task
-        </title>
-    </head>
     <body>
     
         <form action="taskAdded.php" method="post" id = "addTaskForm">
@@ -17,9 +16,15 @@
             <p>Task Category:
             <select name="task_category" form = "addTaskForm">
             <?php
-                require_once('mysqli_connect.php');
 
-                $query = "SELECT * FROM categories";
+                $t_account = $_SESSION["account_id"];
+
+                echo $t_account;
+
+                require_once('mysqli_connect.php');
+                require_once('sqlNames.php');
+
+                $query = "SELECT * FROM $CATEGORY_TABLE WHERE $ACCOUNT_ID = 0";
                 $response = @mysqli_query($dbc, $query);
 
                 while($row = mysqli_fetch_array($response)){
@@ -36,7 +41,10 @@
             </p>
             
             <p>Task Status:
-            <input type="number" name="task_Status" size="30" value=""/>
+            <select name="task_Status" form = "addTaskForm">
+                <option value = "Doing"> Doing </option>
+                <option value = "Complete"> Complete </option>
+            </select>
             </p>
             
             <p>Task Content:
@@ -51,8 +59,6 @@
                 <input type="submit" name="submit" value="Send" />
             </p>
         
-            
         </form>
-    
     </body>
 </html>

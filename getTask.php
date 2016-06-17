@@ -1,8 +1,13 @@
+<?php 
+    session_start();
+?>
+
 <?php
 
 require_once('mysqli_connect.php');
+require_once('sqlNames.php');
 
-$query = "SELECT task_id, account_id, category_id, task_name, task_date, task_status, task_content, task_img_src FROM tasks";
+$query = "SELECT $TASK_ID, T.$ACCOUNT_ID, $CATEGORY_NAME, $TASK_NAME, $TASK_STATUS, $TASK_STATUS, $TASK_CONTENT, $TASK_IMG_SRC, $TASK_DATE FROM $TASK_TABLE T, $CATEGORY_TABLE C WHERE T.$CATEGORY_ID = C.$CATEGORY_ID";
     
 $response = @mysqli_query($dbc, $query);
 
@@ -14,7 +19,7 @@ if($response){
     <tr>
     <td align="left"> <b>Task ID<b>             </td>
     <td align="left"> <b>Account ID</b>         </td>
-    <td align="left"> <b>Category ID</b>        </td>
+    <td align="left"> <b>Category</b>        </td>
     <td align="left"> <b>Task Name</b>          </td>
     <td align="left"> <b>Task Date</b>          </td>
     <td align="left"> <b>Task Status</b>        </td>
@@ -23,16 +28,15 @@ if($response){
     </tr>';
     
     while($row = mysqli_fetch_array($response)){
-        
-        echo '<tr><td align=left>'                      .
-            $row['task_id']                             .   '</td><td align="left">'    .
-            $row['account_id']                          .   '</td><td align="left">'    .
-            $row['category_id']                         .   '</td><td align="left">'    .
-            $row['task_name']                           .   '</td><td align="left">'    .
-            $row['task_date']                           .   '</td><td align="left">'    .
-            $row['task_status']                         .   '</td><td align="left">'    .
-            $row['task_content']                        .   '</td><td align="left">'    .
-            $row['task_img_src']                        .   '</td><td align="left">'    ;
+        echo '<tr><td align=left>'  .
+            $row[$TASK_ID]         .   '</td><td align="left">'    .
+            $row[$ACCOUNT_ID]      .   '</td><td align="left">'    .
+            $row[$CATEGORY_NAME]   .   '</td><td align="left">'    .
+            $row[$TASK_NAME]       .   '</td><td align="left">'    .
+            $row[$TASK_DATE]       .   '</td><td align="left">'    .
+            $row[$TASK_STATUS]     .   '</td><td align="left">'    .
+            $row[$TASK_CONTENT]    .   '</td><td align="left">'    .
+            $row[$TASK_IMG_SRC]    .   '</td><td align="left">'    ;
         
         echo '</tr>
         
